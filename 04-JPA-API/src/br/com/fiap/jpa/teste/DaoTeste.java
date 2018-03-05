@@ -34,7 +34,26 @@ public class DaoTeste {
 			System.out.println("Erro!");
 		}
 		
+		//Buscar
+		Sala salaBusca = dao.consultar(sala.getCodigo());
+		System.out.println(salaBusca.getNome());
 		
+		//Atualizar 
+		salaBusca.setNome("Maker Lab");
+		try {
+			dao.atualizar(salaBusca);
+			dao.commit();
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
+		
+		//Remover
+		try {
+			dao.excluir(salaBusca.getCodigo());
+			dao.commit();
+		}catch(Exception e) {
+			System.err.println(e.getMessage());
+		}
 		
 		em.close();
 		fabrica.close();
