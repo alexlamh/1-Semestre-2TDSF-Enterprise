@@ -1,17 +1,22 @@
 package br.com.fiap.jpa.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name="T_PROJETO_AM")
@@ -34,8 +39,11 @@ public class ProjetoAm {
 	@Column(name="dt_fim")
 	private Calendar dataFim;
 	
-	@OneToOne(mappedBy="projeto")
+	@OneToOne(mappedBy="projeto",cascade=CascadeType.PERSIST)
 	private GrupoAm grupo;
+	
+	@ManyToMany(mappedBy="projetos")
+	private List<Professor> professores;
 	
 	public ProjetoAm() {
 		super();
@@ -86,6 +94,14 @@ public class ProjetoAm {
 
 	public void setGrupo(GrupoAm grupo) {
 		this.grupo = grupo;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
 	}
 	
 }

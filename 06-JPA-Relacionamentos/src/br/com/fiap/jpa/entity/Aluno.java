@@ -18,6 +18,17 @@ public class Aluno {
 	
 	@Column(name="nm_aluno",nullable=false,length=100)
 	private String nome;
+	
+	public Aluno() {
+		super();
+	}
+
+	public Aluno(String rm, String nome, GrupoAm grupo) {
+		super();
+		this.rm = rm;
+		this.nome = nome;
+		this.grupo = grupo;
+	}
 
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
 	@JoinColumn(name="fk_cd_grupo")

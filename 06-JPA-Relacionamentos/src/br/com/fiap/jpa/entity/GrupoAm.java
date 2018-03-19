@@ -32,7 +32,7 @@ public class GrupoAm {
 	@Column(name="vl_nota")
 	private float nota;
 	
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
 	@JoinColumn(name="fk_cd_projeto",nullable=false)
 	private ProjetoAm projeto;
 
