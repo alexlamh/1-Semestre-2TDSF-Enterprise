@@ -1,10 +1,10 @@
 package br.com.fiap.view;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import br.com.fiap.dao.EntityManagerFactorySingleton;
 import br.com.fiap.dao.PacoteDAO;
 import br.com.fiap.dao.TransporteDAO;
@@ -30,8 +30,33 @@ public class PacoteTeste {
 			System.out.println(pacote.getPreco());
 		}
 		
+		
+		System.out.println("BUSCAR PACOTE POR DATAS");
+		Calendar inicio = new GregorianCalendar(2016, Calendar.JANUARY, 2);
+		Calendar fim = new GregorianCalendar(2018,Calendar.JANUARY,2);
+		lista = pacoteDao.buscarPorDatas(inicio, fim);
+		for (Pacote pacote : lista) {
+			System.out.println(pacote.getDescricao());
+			System.out.println(pacote.getDataSaida().getTime());
+		}
+		
+		System.out.println("CALCULAR A MEDIA DE PREÇO");
+		System.out.println("Média é :" + pacoteDao.calcularMediaPreco());
+		
+		System.out.println("BUSCAR POR DATA");
+		lista = pacoteDao.buscarPorData(
+				new GregorianCalendar(2017,Calendar.JANUARY,1));
+		for (Pacote pacote : lista) {
+			System.out.println(pacote.getDescricao());
+		}
+		
 		em.close();
 		fabrica.close();
 	}
 	
 }
+
+
+
+
+

@@ -1,5 +1,6 @@
 package br.com.fiap.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -26,7 +27,7 @@ public class ConsoleView {
 		}
 		
 		System.out.println("BUSCAR POR NOME");
-		lista = clienteDao.buscarPorNome("ia");
+		lista = clienteDao.buscarPorNome("thiago");
 		for (Cliente cliente : lista) {
 			System.out.println(cliente.getNome());
 		}
@@ -45,6 +46,30 @@ public class ConsoleView {
 		
 		System.out.println("TOTAL DE CLIENTES: ");
 		System.out.println(clienteDao.contarTotal());
+		
+		System.out.println("BUSCAR CLIENTE POR NOME E CIDADE");
+		lista = clienteDao.buscar("a", "a");
+		for (Cliente cliente : lista) {
+			System.out.println(cliente.getNome() + " " + 
+					cliente.getEndereco().getCidade().getNome());			
+		}
+		
+		
+		System.out.println("BUSCAR CLIENTE POR ESTADOS");
+		List<String> estados = new ArrayList<>();
+		estados.add("SP");
+		estados.add("RJ");
+		estados.add("BA");
+		estados.add("MG");
+		
+		lista = clienteDao.buscarPorEstados(estados);
+		for (Cliente cliente : lista) {
+			System.out.println(cliente.getNome() + " " + 
+					cliente.getEndereco().getCidade().getUf());			
+		}
+		
+		System.out.println("Reservas: " +
+						clienteDao.contarQuantidadeReserva(1));
 		
 		em.close();
 		fabrica.close();

@@ -9,10 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@NamedQuery(name="Pacote.porData",
+		query="select p from Pacote p where p.dataSaida = :data")	
 @Entity
 @SequenceGenerator(name="seqPacote", sequenceName="SEQ_PACOTE", allocationSize=1)
 public class Pacote {
@@ -25,7 +28,7 @@ public class Pacote {
 	private String descricao;
 	
 	@Column(name="DT_SAIDA",nullable=false)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Calendar dataSaida;
 	
 	@Column(name="QDT_DIAS")

@@ -6,7 +6,13 @@ import br.com.fiap.entity.Cliente;
 
 public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
 
-	List<Cliente> listar();
+	//List<Cliente> listar();
+	
+	long contarQuantidadeReserva(int codigo);
+	
+	List<Cliente> buscarPorEstados(List<String> estados);
+	
+	List<Cliente> buscar(String nome, String cidade);
 	
 	List<Cliente> buscarPorNome(String nome);
 	

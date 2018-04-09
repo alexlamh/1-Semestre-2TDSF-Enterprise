@@ -1,6 +1,7 @@
 package br.com.fiap.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -58,4 +59,18 @@ public class GenericDAOImpl<T,K> implements GenericDAO<T, K>{
 		}
 	}
 
+	@Override
+	public List<T> listar() {
+		return em.createQuery("from " + classe.getName(), classe)
+				.getResultList();
+	}
+
 }
+
+
+
+
+
+
+
+
