@@ -46,6 +46,15 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 				.getResultList();
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Pacote> buscarPorDescricao(String descricao) {		
+		return em.createNativeQuery("SELECT * FROM PACOTE "
+				+ "WHERE DESCRICAO like :d",Pacote.class)
+				.setParameter("d", "%" + descricao + "%")
+				.getResultList();
+	}
+
 }
 
 

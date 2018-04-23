@@ -7,6 +7,8 @@ import br.com.fiap.entity.Transporte;
 
 public interface PacoteDAO extends GenericDAO<Pacote,Integer>{
 
+	List<Pacote> buscarPorDescricao(String descricao);
+	
 	List<Pacote> buscarPorTransporte(Transporte transporte);
 	
 	List<Pacote> buscarPorDatas(Calendar inicio, Calendar fim);

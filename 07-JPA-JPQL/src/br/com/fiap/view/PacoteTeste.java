@@ -50,6 +50,13 @@ public class PacoteTeste {
 			System.out.println(pacote.getDescricao());
 		}
 		
+		//Teste da Query Nativa
+		lista = pacoteDao.buscarPorDescricao("a");
+		System.out.println("BUSCAR POR DESCRIÇÃO");
+		for (Pacote pacote : lista) {
+			System.out.println(pacote.getDescricao());
+		}
+		
 		em.close();
 		fabrica.close();
 	}
